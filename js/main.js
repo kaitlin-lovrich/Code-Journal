@@ -1,6 +1,7 @@
 const $imageInput = document.querySelector('#photo');
 const $image = document.querySelector('img');
 const $form = document.querySelector('form');
+const $ulEntries = document.querySelector('#ul-entries');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -33,7 +34,7 @@ function renderEntry(entry) {
   $img.setAttribute('src', entry.photoURL);
 
   const $div2 = document.createElement('div');
-  $div2.setAttribute('class', 'cloumn-half row column');
+  $div2.setAttribute('class', 'column-half row column');
 
   const $h2 = document.createElement('h2');
   $h2.textContent = entry.title;
@@ -49,4 +50,10 @@ function renderEntry(entry) {
 
   return $li;
 }
-renderEntry(data.entries[0]);
+
+function generateDOMTree(event) {
+  for (const entry of data.entries) {
+    $ulEntries.appendChild(renderEntry(entry));
+  }
+}
+document.addEventListener('DOMContentLoaded', generateDOMTree);
