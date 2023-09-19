@@ -21,3 +21,32 @@ function submitForm(event) {
   $form.reset();
 }
 $form.addEventListener('submit', submitForm);
+
+function renderEntry(entry) {
+  const $li = document.createElement('li');
+  $li.setAttribute('class', 'row');
+
+  const $div1 = document.createElement('div');
+  $div1.setAttribute('class', 'column-half');
+
+  const $img = document.createElement('img');
+  $img.setAttribute('src', entry.photoURL);
+
+  const $div2 = document.createElement('div');
+  $div2.setAttribute('class', 'cloumn-half row column');
+
+  const $h2 = document.createElement('h2');
+  $h2.textContent = entry.title;
+
+  const $p = document.createElement('p');
+  $p.textContent = entry.notes;
+
+  $li.appendChild($div1);
+  $div1.appendChild($img);
+  $li.appendChild($div2);
+  $div2.appendChild($h2);
+  $div2.appendChild($p);
+
+  return $li;
+}
+renderEntry(data.entries[0]);
