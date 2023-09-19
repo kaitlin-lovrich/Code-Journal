@@ -47,6 +47,21 @@ li.row > div > img {
   border-radius: 7px;
 }
 
+a {
+  color: rgb(255, 255, 255);
+}
+
+div.container > h1 > a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 1.7rem;
+  padding: 1.2rem;
+}
+
+#toggle-no-entries {
+  text-align: center;
+}
+
 input,
 textarea {
   line-height: inherit;

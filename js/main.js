@@ -4,7 +4,8 @@ const $form = document.querySelector('form');
 const $ulEntries = document.querySelector('#ul-entries');
 const $toggleNoEntries = document.querySelector('#toggle-no-entries');
 const $entryForm = document.querySelector('[data-view=entry-form]');
-const $entries = document.querySelector('[data-view=entries');
+const $entries = document.querySelector('[data-view=entries]');
+const $entriesAnchor = document.querySelector('#entries-anchor');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -74,6 +75,7 @@ toggleNoEntries();
 function viewSwap(view) {
   if (view === 'entry-form') {
     $entryForm.className = '';
+    $entries.className = 'hidden';
     data.view = view;
   } else if (view === 'entries') {
     $entries.className = '';
@@ -82,4 +84,7 @@ function viewSwap(view) {
   }
 }
 
-viewSwap('entry-form');
+function showProperView(event) {
+  viewSwap('entries');
+}
+$entriesAnchor.addEventListener('click', showProperView);
