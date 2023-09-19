@@ -2,6 +2,7 @@ const $imageInput = document.querySelector('#photo');
 const $image = document.querySelector('img');
 const $form = document.querySelector('form');
 const $ulEntries = document.querySelector('#ul-entries');
+const $toggleNoEntries = document.querySelector('#toggle-no-entries');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -57,3 +58,13 @@ function generateDOMTree(event) {
   }
 }
 document.addEventListener('DOMContentLoaded', generateDOMTree);
+
+function toggleNoEntries() {
+  if (data.entries.length > 0) {
+    $toggleNoEntries.className = '';
+  } else {
+    $toggleNoEntries.className = 'hidden';
+  }
+}
+
+toggleNoEntries();
