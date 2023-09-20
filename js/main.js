@@ -25,9 +25,8 @@ function submitForm(event) {
   data.entries.unshift(entry);
   $image.setAttribute('src', './images/placeholder-image-square.jpg');
 
-  // Task #11 - #15
-  const domTree = renderEntry(entry);
-  $ulEntries.prepend(domTree);
+  const $domTree = renderEntry(entry);
+  $ulEntries.prepend($domTree);
   viewSwap('entries');
   toggleNoEntries();
 
@@ -44,6 +43,7 @@ function renderEntry(entry) {
 
   const $img = document.createElement('img');
   $img.setAttribute('src', entry.photoURL);
+  $img.setAttribute('alt', 'image');
 
   const $div2 = document.createElement('div');
   $div2.setAttribute('class', 'column-half row column');
@@ -67,12 +67,7 @@ function generateDOMTree(event) {
   for (const entry of data.entries) {
     $ulEntries.appendChild(renderEntry(entry));
   }
-  if (data.view === 'entries') {
-    viewSwap('entries');
-  } else if (data.view === 'entry-form') {
-    viewSwap('entry-form');
-  }
-
+  viewSwap(data.view);
   toggleNoEntries();
 }
 document.addEventListener('DOMContentLoaded', generateDOMTree);
@@ -84,8 +79,6 @@ function toggleNoEntries() {
     $toggleNoEntries.className = '';
   }
 }
-
-toggleNoEntries();
 
 function viewSwap(view) {
   if (view === 'entry-form') {
