@@ -19,11 +19,12 @@
     <header>
       <div class="container">
         <h1 class="column-full">Code Journal</h1>
+        <a href="#" id="entries-anchor">Entries</a>
       </div>
     </header>
     <main class="container">
-      <h1 class="column-full">New Entry</h1>
       <div data-view="entry-form">
+        <h1 class="column-full">New Entry</h1>
         <form class="row">
           <div class="column-half">
             <img
@@ -45,7 +46,18 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+      <div data-view="entries" class="hidden">
+        <div class="row">
+          <h1 class="column-half">Entries</h1>
+          <div class="column-half text-align-end button-div">
+            <a href="#" id="new-entries-button">New</a>
+          </div>
+        </div>
+        <p id="toggle-no-entries" class="hidden">
+          No entries have been recorded that match the figma.
+        </p>
+        <ul id="ul-entries"></ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

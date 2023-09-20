@@ -10,6 +10,69 @@ h1 {
   font-size: 2.8rem;
 }
 
+h2 {
+  margin: 1rem 0;
+  line-height: 1;
+}
+
+header {
+  background-color: rgb(76, 38, 118);
+  color: #fff;
+  display: flow-root;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  padding: 0;
+}
+
+button,
+#new-entries-button {
+  line-height: 1.8;
+  border-radius: 4px;
+  background-color: rgb(76, 38, 118);
+  color: rgb(255, 255, 255);
+  margin: 1rem 0;
+  font-size: inherit;
+  padding: 0 1rem;
+}
+
+#new-entries-button {
+  text-decoration: none;
+  padding: 0.4rem 1.3rem;
+  font-size: 2rem;
+}
+
+.button-div {
+  padding: 1rem;
+}
+
+li.row > div > p {
+  margin: 0;
+}
+
+li.row > div > img {
+  border-radius: 7px;
+}
+
+a {
+  color: rgb(255, 255, 255);
+}
+
+div.container > h1 > a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 1.7rem;
+  padding: 1.2rem;
+}
+
+#toggle-no-entries {
+  text-align: center;
+}
+
 input,
 textarea {
   line-height: inherit;
@@ -30,24 +93,4 @@ textarea {
 
 .text-align-end {
   text-align: end;
-}
-
-img {
-  width: 100%;
-}
-
-header {
-  background-color: rgb(76, 38, 118);
-  color: #fff;
-  display: flow-root;
-}
-
-button {
-  line-height: 1.8;
-  border-radius: 4px;
-  background-color: rgb(76, 38, 118);
-  color: rgb(255, 255, 255);
-  margin: 1rem 0;
-  font-size: inherit;
-  padding: 0 1rem;
 }
