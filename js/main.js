@@ -1,4 +1,4 @@
-const $imageInput = document.querySelector('#photo');
+const $inputPhotoURL = document.querySelector('#photo');
 const $image = document.querySelector('img');
 const $form = document.querySelector('form');
 const $ulEntries = document.querySelector('#ul-entries');
@@ -7,11 +7,14 @@ const $entryForm = document.querySelector('[data-view=entry-form]');
 const $entries = document.querySelector('[data-view=entries]');
 const $entriesAnchor = document.querySelector('#entries-anchor');
 const $newEntriesButton = document.querySelector('#new-entries-button');
+const $inputTitle = document.querySelector('#title');
+const $textareaNotes = document.querySelector('#notes');
+const $formHeading = document.querySelector('#form-heading');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
 }
-$imageInput.addEventListener('input', setSRC);
+$inputPhotoURL.addEventListener('input', setSRC);
 
 function submitForm(event) {
   event.preventDefault();
@@ -114,3 +117,24 @@ function showProperView(event) {
 }
 $entriesAnchor.addEventListener('click', showProperView);
 $newEntriesButton.addEventListener('click', showProperView);
+
+function editEntries(event) {
+  const $srcElement = event.target.nodeName;
+  if ($srcElement !== 'I') {
+    return;
+  }
+  viewSwap('entry-form');
+  const entryObj = event.target.closest('li').getAttribute('data-entry-id');
+
+  for (const entry of data.entries) {
+    if (entry.entryId.toString() === entryObj) {
+      data.editing = entry;
+      $inputTitle.value = entry.title;
+      $inputPhotoURL.value = entry.photoURL;
+      $image.setAttribute('src', entry.photoURL);
+      $textareaNotes.value = entry.notes;
+    }
+  }
+  $formHeading.textContent = 'Edit Entry';
+}
+$ulEntries.addEventListener('click', editEntries);
