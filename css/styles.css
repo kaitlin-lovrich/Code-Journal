@@ -40,6 +40,12 @@ button,
   padding: 0 1rem;
 }
 
+#entries-anchor {
+  padding: 0.9rem 2rem;
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
 #new-entries-button {
   text-decoration: none;
   padding: 0.4rem 1.3rem;
@@ -89,6 +95,11 @@ textarea {
 
 .column {
   flex-direction: column;
+}
+
+.column-half-strict {
+  flex-direction: column;
+  flex-basis: 50%;
 }
 
 .text-align-end {

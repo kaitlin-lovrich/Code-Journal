@@ -37,6 +37,7 @@ $form.addEventListener('submit', submitForm);
 function renderEntry(entry) {
   const $li = document.createElement('li');
   $li.setAttribute('class', 'row');
+  $li.setAttribute('data-entry-id', entry.entryId);
 
   const $div1 = document.createElement('div');
   $div1.setAttribute('class', 'column-half');
@@ -46,7 +47,13 @@ function renderEntry(entry) {
   $img.setAttribute('alt', 'image');
 
   const $div2 = document.createElement('div');
-  $div2.setAttribute('class', 'column-half row column');
+  $div2.setAttribute('class', 'column-half row');
+
+  const $div3 = document.createElement('div');
+  $div3.setAttribute('class', 'column-half-strict row column');
+
+  const $div4 = document.createElement('div');
+  $div4.setAttribute('class', 'column-half-strict row column');
 
   const $h2 = document.createElement('h2');
   $h2.textContent = entry.title;
@@ -54,11 +61,17 @@ function renderEntry(entry) {
   const $p = document.createElement('p');
   $p.textContent = entry.notes;
 
+  const $i = document.createElement('i');
+  $i.setAttribute('class', 'fa-solid fa-pencil text-align-end');
+
   $li.appendChild($div1);
   $div1.appendChild($img);
   $li.appendChild($div2);
-  $div2.appendChild($h2);
-  $div2.appendChild($p);
+  $div2.appendChild($div3);
+  $div3.appendChild($h2);
+  $div3.appendChild($p);
+  $div2.appendChild($div4);
+  $div4.appendChild($i);
 
   return $li;
 }
