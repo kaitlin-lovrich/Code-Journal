@@ -24,6 +24,13 @@ function submitForm(event) {
   data.nextEntryId++;
   data.entries.unshift(entry);
   $image.setAttribute('src', './images/placeholder-image-square.jpg');
+
+  // Task #11 - #15
+  const domTree = renderEntry(entry);
+  $ulEntries.prepend(domTree);
+  viewSwap('entries');
+  toggleNoEntries();
+
   $form.reset();
 }
 $form.addEventListener('submit', submitForm);
@@ -65,9 +72,9 @@ document.addEventListener('DOMContentLoaded', generateDOMTree);
 
 function toggleNoEntries() {
   if (data.entries.length > 0) {
-    $toggleNoEntries.className = '';
-  } else {
     $toggleNoEntries.className = 'hidden';
+  } else {
+    $toggleNoEntries.className = '';
   }
 }
 
