@@ -67,6 +67,13 @@ function generateDOMTree(event) {
   for (const entry of data.entries) {
     $ulEntries.appendChild(renderEntry(entry));
   }
+  if (data.view === 'entries') {
+    viewSwap('entries');
+  } else if (data.view === 'entry-form') {
+    viewSwap('entry-form');
+  }
+
+  toggleNoEntries();
 }
 document.addEventListener('DOMContentLoaded', generateDOMTree);
 
