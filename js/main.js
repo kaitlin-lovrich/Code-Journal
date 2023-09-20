@@ -6,6 +6,7 @@ const $toggleNoEntries = document.querySelector('#toggle-no-entries');
 const $entryForm = document.querySelector('[data-view=entry-form]');
 const $entries = document.querySelector('[data-view=entries]');
 const $entriesAnchor = document.querySelector('#entries-anchor');
+const $newEntriesButton = document.querySelector('#new-entries-button');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -85,6 +86,11 @@ function viewSwap(view) {
 }
 
 function showProperView(event) {
-  viewSwap('entries');
+  if (event.target === $entriesAnchor) {
+    viewSwap('entries');
+  } else if (event.target === $newEntriesButton) {
+    viewSwap('entry-form');
+  }
 }
 $entriesAnchor.addEventListener('click', showProperView);
+$newEntriesButton.addEventListener('click', showProperView);

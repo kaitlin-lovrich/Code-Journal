@@ -29,7 +29,8 @@ ul {
   padding: 0;
 }
 
-button {
+button,
+#new-entries-button {
   line-height: 1.8;
   border-radius: 4px;
   background-color: rgb(76, 38, 118);
@@ -37,6 +38,16 @@ button {
   margin: 1rem 0;
   font-size: inherit;
   padding: 0 1rem;
+}
+
+#new-entries-button {
+  text-decoration: none;
+  padding: 0.4rem 1.3rem;
+  font-size: 2rem;
+}
+
+.button-div {
+  padding: 1rem;
 }
 
 li.row > div > p {
