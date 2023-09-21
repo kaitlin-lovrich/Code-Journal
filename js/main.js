@@ -24,16 +24,28 @@ function submitForm(event) {
     photoURL: $form.elements.photo.value,
     notes: $form.elements.notes.value,
   };
-  data.nextEntryId++;
-  data.entries.unshift(entry);
-  $image.setAttribute('src', './images/placeholder-image-square.jpg');
+  if (data.editing === null) {
+    data.nextEntryId++;
+    data.entries.unshift(entry);
+    $image.setAttribute('src', './images/placeholder-image-square.jpg');
 
-  const $domTree = renderEntry(entry);
-  $ulEntries.prepend($domTree);
-  viewSwap('entries');
-  toggleNoEntries();
+    const $domTree = renderEntry(entry);
+    $ulEntries.prepend($domTree);
+    viewSwap('entries');
+    toggleNoEntries();
 
-  $form.reset();
+    $form.reset();
+  }
+  // Assigns the entry id value from data.editing to the new object with the updated form values.
+  else if (data.editing !== null) {
+    entry.entryId = data.editing.entryId;
+    // Replaces the original object in the data.entries array for the edited entry with the new object with the edited data.
+    for (let index = 0; index < data.entries.length; index++) {
+      if (data.entries[index].entryId === data.editing.entryId) {
+        data.entries[index] = entry;
+      }
+    }
+  }
 }
 $form.addEventListener('submit', submitForm);
 
