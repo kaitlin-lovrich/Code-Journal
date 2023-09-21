@@ -36,10 +36,10 @@ function submitForm(event) {
     entry.entryId = data.editing.entryId;
     // Replaces the original object in the data.entries array for the edited entry with the new object with the edited data.
     for (let index = 0; index < data.entries.length; index++) {
-      if (data.entries[index].entryId === data.editing.entryId) {
+      if (data.entries[index].entryId === entry.entryId) {
         data.entries[index] = entry;
         $formHeading.textContent = 'New Entry';
-        data.editing = '';
+        data.editing = null;
         $image.setAttribute('src', './images/placeholder-image-square.jpg');
         const $domTree = renderEntry(entry);
         const $liElements = document.querySelectorAll('li');
