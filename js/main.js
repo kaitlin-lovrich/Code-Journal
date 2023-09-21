@@ -1,4 +1,4 @@
-const $imageInput = document.querySelector('#photo');
+const $inputPhotoURL = document.querySelector('#photo');
 const $image = document.querySelector('img');
 const $form = document.querySelector('form');
 const $ulEntries = document.querySelector('#ul-entries');
@@ -7,11 +7,14 @@ const $entryForm = document.querySelector('[data-view=entry-form]');
 const $entries = document.querySelector('[data-view=entries]');
 const $entriesAnchor = document.querySelector('#entries-anchor');
 const $newEntriesButton = document.querySelector('#new-entries-button');
+const $inputTitle = document.querySelector('#title');
+const $textareaNotes = document.querySelector('#notes');
+const $formHeading = document.querySelector('#form-heading');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
 }
-$imageInput.addEventListener('input', setSRC);
+$inputPhotoURL.addEventListener('input', setSRC);
 
 function submitForm(event) {
   event.preventDefault();
@@ -21,15 +24,36 @@ function submitForm(event) {
     photoURL: $form.elements.photo.value,
     notes: $form.elements.notes.value,
   };
-  data.nextEntryId++;
-  data.entries.unshift(entry);
-  $image.setAttribute('src', './images/placeholder-image-square.jpg');
-
-  const $domTree = renderEntry(entry);
-  $ulEntries.prepend($domTree);
-  viewSwap('entries');
+  if (data.editing === null) {
+    data.nextEntryId++;
+    data.entries.unshift(entry);
+    $image.setAttribute('src', './images/placeholder-image-square.jpg');
+    const $domTree = renderEntry(entry);
+    $ulEntries.prepend($domTree);
+  }
+  // Assigns the entry id value from data.editing to the new object with the updated form values.
+  else if (data.editing !== null) {
+    entry.entryId = data.editing.entryId;
+    // Replaces the original object in the data.entries array for the edited entry with the new object with the edited data.
+    for (let index = 0; index < data.entries.length; index++) {
+      if (data.entries[index].entryId === entry.entryId) {
+        data.entries[index] = entry;
+        $formHeading.textContent = 'New Entry';
+        data.editing = null;
+        $image.setAttribute('src', './images/placeholder-image-square.jpg');
+        const $domTree = renderEntry(entry);
+        const $liElements = document.querySelectorAll('li');
+        if (
+          $liElements[index].getAttribute('data-entry-id') ===
+          entry.entryId.toString()
+        ) {
+          $liElements[index].replaceWith($domTree);
+        }
+      }
+    }
+  }
   toggleNoEntries();
-
+  viewSwap('entries');
   $form.reset();
 }
 $form.addEventListener('submit', submitForm);
@@ -37,6 +61,7 @@ $form.addEventListener('submit', submitForm);
 function renderEntry(entry) {
   const $li = document.createElement('li');
   $li.setAttribute('class', 'row');
+  $li.setAttribute('data-entry-id', entry.entryId);
 
   const $div1 = document.createElement('div');
   $div1.setAttribute('class', 'column-half');
@@ -46,7 +71,13 @@ function renderEntry(entry) {
   $img.setAttribute('alt', 'image');
 
   const $div2 = document.createElement('div');
-  $div2.setAttribute('class', 'column-half row column');
+  $div2.setAttribute('class', 'column-half row');
+
+  const $div3 = document.createElement('div');
+  $div3.setAttribute('class', 'column-half-strict row column');
+
+  const $div4 = document.createElement('div');
+  $div4.setAttribute('class', 'column-half-strict row column');
 
   const $h2 = document.createElement('h2');
   $h2.textContent = entry.title;
@@ -54,11 +85,17 @@ function renderEntry(entry) {
   const $p = document.createElement('p');
   $p.textContent = entry.notes;
 
+  const $i = document.createElement('i');
+  $i.setAttribute('class', 'fa-solid fa-pencil text-align-end');
+
   $li.appendChild($div1);
   $div1.appendChild($img);
   $li.appendChild($div2);
-  $div2.appendChild($h2);
-  $div2.appendChild($p);
+  $div2.appendChild($div3);
+  $div3.appendChild($h2);
+  $div3.appendChild($p);
+  $div2.appendChild($div4);
+  $div4.appendChild($i);
 
   return $li;
 }
@@ -101,3 +138,24 @@ function showProperView(event) {
 }
 $entriesAnchor.addEventListener('click', showProperView);
 $newEntriesButton.addEventListener('click', showProperView);
+
+function editEntries(event) {
+  const $srcElement = event.target.nodeName;
+  if ($srcElement !== 'I') {
+    return;
+  }
+  viewSwap('entry-form');
+  const entryObj = event.target.closest('li').getAttribute('data-entry-id');
+
+  for (const entry of data.entries) {
+    if (entry.entryId.toString() === entryObj) {
+      data.editing = entry;
+      $inputTitle.value = entry.title;
+      $inputPhotoURL.value = entry.photoURL;
+      $image.setAttribute('src', entry.photoURL);
+      $textareaNotes.value = entry.notes;
+    }
+  }
+  $formHeading.textContent = 'Edit Entry';
+}
+$ulEntries.addEventListener('click', editEntries);
