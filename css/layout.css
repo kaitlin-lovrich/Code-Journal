@@ -24,7 +24,8 @@
   }
 
   .column-full,
-  .column-half {
+  .column-half,
+  .column-half-strict {
     padding: 0 0.75rem;
   }
 

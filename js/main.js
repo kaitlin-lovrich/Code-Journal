@@ -10,6 +10,7 @@ const $newEntriesButton = document.querySelector('#new-entries-button');
 const $inputTitle = document.querySelector('#title');
 const $textareaNotes = document.querySelector('#notes');
 const $formHeading = document.querySelector('#form-heading');
+const $deleteEntry = document.querySelector('#delete-entry');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -157,5 +158,6 @@ function editEntries(event) {
     }
   }
   $formHeading.textContent = 'Edit Entry';
+  $deleteEntry.className = '';
 }
 $ulEntries.addEventListener('click', editEntries);

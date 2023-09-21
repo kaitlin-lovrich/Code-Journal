@@ -46,6 +46,10 @@ button,
   font-size: 1.8rem;
 }
 
+#delete-entry {
+  color: red;
+}
+
 #new-entries-button {
   text-decoration: none;
   padding: 0.4rem 1.3rem;
