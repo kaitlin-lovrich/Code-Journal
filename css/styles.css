@@ -109,3 +109,44 @@ textarea {
 .text-align-end {
   text-align: end;
 }
+
+.modal-box {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  padding: 1rem;
+  font-size: 1.8rem;
+  border-radius: 8px;
+  border-style: none;
+  background-color: rgb(255, 255, 255);
+}
+
+.modal-buttons {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+}
+
+#cancel {
+  background-color: rgb(182, 182, 182);
+  color: rgb(41, 41, 41);
+  border: none;
+}
+
+#confirm {
+  background-color: rgb(220, 38, 38);
+  border: none;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.8);
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

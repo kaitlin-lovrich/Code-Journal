@@ -11,6 +11,9 @@ const $inputTitle = document.querySelector('#title');
 const $textareaNotes = document.querySelector('#notes');
 const $formHeading = document.querySelector('#form-heading');
 const $deleteEntry = document.querySelector('#delete-entry');
+const $modalBox = document.querySelector('.modal-box');
+// const $cancel = document.querySelector('#cancel');
+// const $confirm = document.querySelector('#confirm');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -161,3 +164,8 @@ function editEntries(event) {
   $deleteEntry.className = '';
 }
 $ulEntries.addEventListener('click', editEntries);
+
+function showModal(event) {
+  $modalBox.className = 'modal-box overlay';
+}
+$deleteEntry.addEventListener('click', showModal);

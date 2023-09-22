@@ -1,4 +1,5 @@
-.hidden {
+.hidden,
+.modal-hidden {
   display: none !important;
 }
 
