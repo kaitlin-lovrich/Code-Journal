@@ -12,7 +12,7 @@ const $textareaNotes = document.querySelector('#notes');
 const $formHeading = document.querySelector('#form-heading');
 const $deleteEntry = document.querySelector('#delete-entry');
 const $modalBox = document.querySelector('.modal-box');
-// const $cancel = document.querySelector('#cancel');
+const $cancel = document.querySelector('#cancel');
 // const $confirm = document.querySelector('#confirm');
 
 function setSRC(event) {
@@ -169,3 +169,8 @@ function showModal(event) {
   $modalBox.className = 'modal-box overlay';
 }
 $deleteEntry.addEventListener('click', showModal);
+
+function hideModal(event) {
+  $modalBox.className = 'hidden modal-box overlay';
+}
+$cancel.addEventListener('click', hideModal);
