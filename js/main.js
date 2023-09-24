@@ -13,7 +13,7 @@ const $formHeading = document.querySelector('#form-heading');
 const $deleteEntry = document.querySelector('#delete-entry');
 const $modalBox = document.querySelector('.modal-box');
 const $cancel = document.querySelector('#cancel');
-// const $confirm = document.querySelector('#confirm');
+const $confirm = document.querySelector('#confirm');
 
 function setSRC(event) {
   $image.setAttribute('src', event.target.value);
@@ -174,3 +174,29 @@ function hideModal(event) {
   $modalBox.className = 'hidden modal-box overlay';
 }
 $cancel.addEventListener('click', hideModal);
+
+function confirmCancel(event) {
+  const entryObj = data.editing.entryId;
+  for (const entry of data.entries) {
+    if (entry.entryId === entryObj) {
+      const delIndex = data.entries.indexOf(entry);
+      data.entries.splice(delIndex, 1);
+      const $domTree = renderEntry(entry);
+      const $liElements = document.querySelectorAll('li');
+      for (let index = 0; index < $liElements.length; index++)
+        if (
+          $liElements[index].getAttribute('data-entry-id') ===
+          entry.entryId.toString()
+        ) {
+          $liElements[index].remove($domTree);
+        }
+    }
+  }
+  data.editing = null;
+  $modalBox.className = 'hidden modal-box overlay';
+  $image.setAttribute('src', './images/placeholder-image-square.jpg');
+  toggleNoEntries();
+  viewSwap('entries');
+  $form.reset();
+}
+$confirm.addEventListener('click', confirmCancel);
