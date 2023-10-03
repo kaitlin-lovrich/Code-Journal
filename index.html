@@ -43,10 +43,25 @@
             <label for="notes">Notes</label>
             <textarea id="notes" rows="6" name="notes" required></textarea>
           </div>
-          <div class="column-full text-align-end">
+
+          <div class="column-half-strict">
+            <a href="#" id="delete-entry" class="hidden">Delete Entry</a>
+          </div>
+          <div class="column-half-strict text-align-end">
             <button>SAVE</button>
           </div>
         </form>
+      </div>
+      <div class="hidden modal-box overlay">
+        <div class="modal-content">
+          <div class="column-full">
+            <p>Are you sure you want to delete this entry?</p>
+          </div>
+          <div class="modal-buttons">
+            <button id="cancel">CANCEL</button>
+            <button id="confirm">CONFIRM</button>
+          </div>
+        </div>
       </div>
       <div data-view="entries" class="hidden">
         <div class="row">
